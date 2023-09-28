@@ -4,8 +4,7 @@
 
 function handleEnableSwitch (e) {
   e.preventDefault();
-  console.log(e);
-  
+    
   const label = document.querySelector('label');
   // toggle label on the button (and the label next next to the button)
   // when clicked
