@@ -4,7 +4,8 @@
 if (typeof config !== 'object') {
   var config = {
     spawnerId: undefined,
-    idCounter: 0
+    idCounter: 0,
+    explosionOneshot: createAudioOneshot(chrome.runtime.getURL('audio/explosion.wav'))
   };
 }
 
@@ -88,8 +89,7 @@ function createBugElement (bugLayer) {
 }
 
 function destroyBug (e) {
-  const splat = new Audio(chrome.runtime.getURL('audio/bugsplat.wav'));
-  splat.play();
+  new Audio(chrome.runtime.getURL('audio/bugsplat.wav')).play();
   e.target.remove();
 }
 
@@ -118,9 +118,19 @@ function startDetonation (e) {
 
 function completeDetonation (img) {
   img.src = chrome.runtime.getURL('./images/explosion.gif');
+  config.explosionOneshot();
   setTimeout(postDetonation, 1000, img);
 }
 
 function postDetonation (img) {
   img.classList.add('destroyedImg');
+}
+
+function createAudioOneshot (src) {
+  let hasplayed = false;
+  return function oneshot () {
+    if (hasplayed) return;
+    hasplayed = true;
+    new Audio(src).play();
+  }
 }

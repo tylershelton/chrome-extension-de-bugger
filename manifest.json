@@ -30,6 +30,7 @@
     {
       "resources": [
         "audio/bugsplat.wav",
+        "audio/explosion.wav",
         "images/bomb_48x48.gif",
         "images/de-bugger_48X48_animated-export.gif",
         "images/run.gif",
