@@ -22,13 +22,5 @@
       "16": "images/de-bugger_16x16.png",
       "48": "images/de-bugger_16x16.png",
       "128": "images/de-bugger_16x16.png"
-    },
-    "browser_action": {
-      "default_popup": "popup/index.html",
-      "default_icon": {
-        "16": "images/de-bugger_16x16.png",
-        "48": "images/de-bugger_16x16.png",
-        "128": "images/de-bugger_16x16.png"
-      }
     }
   }
