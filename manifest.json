@@ -1,26 +1,28 @@
 {
-    "manifest_version": 3,
-    "name": "Bug Display Extension",
-    "version": "1.0",
-    "description": "Display bugs on top of web content.",
-    "permissions": [
-      "activeTab"
-    ],
-    "action": {
-      "default_popup": "popup/popup.html",
-      "default_icon": {
-        "16": "images/de-bugger_16x16.png",
-        "48": "images/de-bugger_16x16.png",
-        "128": "images/de-bugger_16x16.png"
-      }
-    },
-    "content_scripts": [{
-      "css": ["game/game.css"],
-      "matches": ["<all_urls>"]
-    }],
-    "icons": {
+  "manifest_version": 3,
+  "name": "Bug Display Extension",
+  "version": "1.0.0",
+  "description": "Display bugs on top of web content.",
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
       "16": "images/de-bugger_16x16.png",
       "48": "images/de-bugger_16x16.png",
       "128": "images/de-bugger_16x16.png"
     }
+  },
+  "content_scripts": [{
+    "css": ["game/game.css"],
+    "js": ["game/game.js"],
+    "matches": ["<all_urls>"]
+  }],
+  "icons": {
+    "16": "images/de-bugger_16x16.png",
+    "48": "images/de-bugger_16x16.png",
+    "128": "images/de-bugger_16x16.png"
   }
+}
