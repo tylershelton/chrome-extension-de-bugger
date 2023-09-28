@@ -7,7 +7,7 @@
       "activeTab"
     ],
     "action": {
-      "default_popup": "popup/index.html",
+      "default_popup": "popup/popup.html",
       "default_icon": {
         "16": "images/de-bugger_16x16.png",
         "48": "images/de-bugger_16x16.png",
