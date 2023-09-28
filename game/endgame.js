@@ -9,9 +9,11 @@ function cleanupImages () {
       img.srcset = img.dataset.originalsrcset;
       delete img.dataset.originalsrcset;
     }
-    img.src = img.dataset.originalsrc;
-    delete img.dataset.originalsrc;
-    img.classList.remove('destroyedImg');
+    if (img.hasAttribute('data-originalsrc')) {
+      img.src = img.dataset.originalsrc;
+      delete img.dataset.originalsrc;
+      img.classList.remove('destroyedImg');
+    }
   });
 }
 

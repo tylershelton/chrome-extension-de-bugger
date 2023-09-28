@@ -1,24 +1,46 @@
 /* eslint-env browser */
 /* eslint-env webextensions */
 
+if (typeof config !== 'object') {
+  var config = {
+    spawnerId: undefined,
+    idCounter: 0
+  };
+}
+
 function startGame () {
-  const divs = document.querySelectorAll('div, section, body');
-  // divs.forEach(div => div.classList.add('fuchsia'));
+  let speed = 2000;
+  const bugInterval = 250;
+  const speedLimit = 300;
+  // set up "game board"
   const bugLayer = document.createElement('div');
   bugLayer.setAttribute('id','bugLayer');
   document.body.appendChild(bugLayer);
-  createBugElement(bugLayer);
-  createBombElement(bugLayer);
+
+  // createBugElement(bugLayer);
+  // spawn one bomb, after a few bugs have spawned
+  setTimeout(createBombElement, 5000, bugLayer);
+
+  function spawnBugs(){
+    createBugElement(bugLayer);
+
+    // clamp speed to be no faster than `speedLimit`
+    if (speed - bugInterval >= speedLimit)
+      speed -= bugInterval;
+
+    config.spawnerId = setTimeout(spawnBugs, speed);
+  }
+  spawnBugs();
 }
 
 startGame();
 
 
 //BOMB CREATION FUNC
-function createBombElement(bugLayer, bombNum = 1) {
+function createBombElement (bugLayer) {
   const bomb = document.createElement('img');
   bomb.className = 'bombs';
-  bomb.setAttribute('id', `bomb ${bombNum}`);
+  bomb.setAttribute('id', `bomb ${config.idCounter}`);
   bomb.setAttribute('src', chrome.runtime.getURL('images/bomb_48x48.gif'));
 
   // Place bug randomly on the screen
@@ -32,7 +54,7 @@ function createBombElement(bugLayer, bombNum = 1) {
   bomb.style.top = `${randomY}px`;
   
   bugLayer.appendChild(bomb);
-  bombNum++;
+  config.idCounter++;
 
   bomb.addEventListener('click', startDetonation);
 
@@ -40,12 +62,11 @@ function createBombElement(bugLayer, bombNum = 1) {
 }
 
 //BUG CREATION FUNCTIONS
-
 // Function to create and style bug element
-function createBugElement(bugLayer, bugNum = 1) {
+function createBugElement (bugLayer) {
   const bug = document.createElement('img');
   bug.className = 'bugs';
-  bug.setAttribute('id', `bug ${bugNum}`);
+  bug.setAttribute('id', `bug ${config.idCounter}`);
   bug.setAttribute('src', chrome.runtime.getURL('images/de-bugger_48X48_animated-export.gif'));
 
   // Place bug randomly on the screen
@@ -59,26 +80,27 @@ function createBugElement(bugLayer, bugNum = 1) {
   bug.style.top = `${randomY}px`;
   
   bugLayer.appendChild(bug);
-  bugNum++;
+  config.idCounter++;
 
   bug.addEventListener('click', destroyBug);
 
   return bug;
 }
 
-
 function destroyBug (e) {
-  console.log('Bug clicked');
   e.target.remove();
 }
 
-function destroyBomb (e) {
-  console.log('Bomb clicked');
-  e.target.remove();
-}
 
 // )))))))) bomb functionality ((((((((
-function startDetonation () {
+function startDetonation (e) {
+  // stop spawning new bugs
+  clearTimeout(config.spawnerId);
+
+  // delete the bomb
+  e.target.remove();
+
+  // get all images on page
   document.querySelectorAll('img').forEach(img => {
     // stash original url(s) off to the side so we can restore later
     if (img.srcset) {
