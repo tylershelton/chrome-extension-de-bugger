@@ -10,6 +10,7 @@
     height: 48px;
     width: 48px;
     position: absolute;
+    filter: drop-shadow(0px 0px 12px #f5ef42);
 }
 
 img.destroyedImg {
@@ -21,4 +22,5 @@ img.destroyedImg {
     height: 48px;
     width: 48px;
     position: absolute;
+    filter: drop-shadow(0px 0px 12px #7a7a7a);
 }
