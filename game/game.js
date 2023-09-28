@@ -9,8 +9,8 @@ if (typeof config !== 'object') {
 }
 
 function startGame () {
-  let speed = 2000;
-  const bugInterval = 200;
+  let speed = 1900;
+  const bugInterval = 150;
   const speedLimit = 300;
   // set up "game board"
   const bugLayer = document.createElement('div');
