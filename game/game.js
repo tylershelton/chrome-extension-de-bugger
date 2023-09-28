@@ -88,6 +88,8 @@ function createBugElement (bugLayer) {
 }
 
 function destroyBug (e) {
+  const splat = new Audio(chrome.runtime.getURL('audio/bugsplat.wav'));
+  splat.play();
   e.target.remove();
 }
 
