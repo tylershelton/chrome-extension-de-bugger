@@ -2,9 +2,27 @@
     background-color: fuchsia;
 }
 
+#bugLayer {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
 .bugs {
     height: 48px;
     width: 48px;
     position: absolute;
 }
 
+img.destroyedImg {
+    display: none;
+}
+
+
+.bombs {
+    height: 48px;
+    width: 48px;
+    position: absolute;
+}
