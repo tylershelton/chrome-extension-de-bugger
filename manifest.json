@@ -5,11 +5,13 @@
   "description": "Display bugs on top of web content.",
 
   "permissions": [
-    "activeTab",
-    "scripting"
+      "activeTab",
+      "storage",
+      "webNavigation",
+      "webRequest",
+      "scripting"
   ],
   "action": {
-
     "default_icon": {
       "16": "images/de-bugger_16x16.png",
       "48": "images/de-bugger_16x16.png",
@@ -23,5 +25,16 @@
     "16": "images/de-bugger_16x16.png",
     "48": "images/de-bugger_16x16.png",
     "128": "images/de-bugger_16x16.png"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "images/bomb_48x48.gif",
+        "images/de-bugger_48X48_animated-export.gif",
+        "images/run.gif",
+        "images/explosion.gif"
+      ],
+      "matches": [ "<all_urls>" ]
+    }
+  ]
 }
