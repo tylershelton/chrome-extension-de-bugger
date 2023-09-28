@@ -8,9 +8,8 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
-// listen for enable/disable messages
-// from the extension. Start and stop
-// the game accordingly
+// listen for enable/disable messages from the extension.
+// Start and stop the game accordingly
 chrome.action.onClicked.addListener(async (tab) => {
   // determine whether we're turning the game on or off
   const prevState = await chrome.action.getBadgeText({tabId: tab.id});
