@@ -7,30 +7,28 @@
       "activeTab"
     ],
     "action": {
-      "default_popup": "index.html",
+      "default_popup": "popup/index.html",
       "default_icon": {
-        "16": "images/icon16.png",
-        "48": "images/icon48.png",
-        "128": "images/icon128.png"
+        "16": "images/de-bugger_16x16.png",
+        "48": "images/de-bugger_16x16.png",
+        "128": "images/de-bugger_16x16.png"
       }
     },
+    "content_scripts": [{
+      "css": ["game/game.css"],
+      "matches": ["<all_urls>"]
+    }],
     "icons": {
-      "16": "images/icon16.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
+      "16": "images/de-bugger_16x16.png",
+      "48": "images/de-bugger_16x16.png",
+      "128": "images/de-bugger_16x16.png"
     },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["main.js"]
-      }
-    ],
     "browser_action": {
-      "default_popup": "popup.html",
+      "default_popup": "popup/index.html",
       "default_icon": {
-        "16": "images/icon16.png",
-        "48": "images/icon48.png",
-        "128": "images/icon128.png"
+        "16": "images/de-bugger_16x16.png",
+        "48": "images/de-bugger_16x16.png",
+        "128": "images/de-bugger_16x16.png"
       }
     }
   }
