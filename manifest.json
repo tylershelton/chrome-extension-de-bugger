@@ -3,10 +3,12 @@
   "name": "Bug Display Extension",
   "version": "1.0.0",
   "description": "Display bugs on top of web content.",
+
   "permissions": [
     "activeTab",
     "tabs"
   ],
+
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": {
@@ -14,6 +16,9 @@
       "48": "images/de-bugger_16x16.png",
       "128": "images/de-bugger_16x16.png"
     }
+  },
+  "background": {
+    "service_worker": "background.js"
   },
   "content_scripts": [{
     "css": ["game/game.css"],
